@@ -1,3 +1,5 @@
+import java.util.Objects;
+
 public class User {
     private String firstName;
     private String lastName;
@@ -8,6 +10,25 @@ public class User {
         this.lastName = lastName;
         this.email = email;
     }
+
+    public User(){}
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof User user)) return false;
+        return Objects.equals(getFirstName(), user.getFirstName()) && Objects.equals(getLastName(), user.getLastName()) && Objects.equals(getEmail(), user.getEmail());
+    }
+
 
     public String getFirstName() {
         return firstName;

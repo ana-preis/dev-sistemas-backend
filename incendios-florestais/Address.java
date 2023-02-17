@@ -1,3 +1,5 @@
+import java.util.Objects;
+
 public class Address {
     private String city;
     private String state;
@@ -7,6 +9,24 @@ public class Address {
         this.city = city;
         this.state = state;
         this.country = country;
+    }
+
+    public Address(){}
+
+    @Override
+    public String toString() {
+        return "Address{" +
+                "city='" + city + '\'' +
+                ", state='" + state + '\'' +
+                ", country='" + country + '\'' +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Address address)) return false;
+        return Objects.equals(getCity(), address.getCity());
     }
 
     public String getCity() {

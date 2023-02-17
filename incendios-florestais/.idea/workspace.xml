@@ -4,7 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="098ae6fc-66f2-4a5c-b4ce-b1a4934d41da" name="Changes" comment="" />
+    <list default="true" id="098ae6fc-66f2-4a5c-b4ce-b1a4934d41da" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Address.java" beforeDir="false" afterPath="$PROJECT_DIR$/Address.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Fire.java" beforeDir="false" afterPath="$PROJECT_DIR$/Fire.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/User.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -17,6 +22,9 @@
         <option value="Class" />
       </list>
     </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -37,7 +45,8 @@
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
-    "settings.editor.selected.configurable": "editor.preferences.fonts.default",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.keymap",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -52,7 +61,7 @@
       <workItem from="1676332772701" duration="2597000" />
       <workItem from="1676335737609" duration="2000" />
       <workItem from="1676587344206" duration="18000" />
-      <workItem from="1676589278459" duration="1318000" />
+      <workItem from="1676589278459" duration="3380000" />
     </task>
     <servers />
   </component>

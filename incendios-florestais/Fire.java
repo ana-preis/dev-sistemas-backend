@@ -1,4 +1,5 @@
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 public class Fire {
     private Float latitude;
@@ -23,6 +24,31 @@ public class Fire {
         this.address = address;
         this.parkName = parkName;
         this.savedAt = savedAt;
+    }
+
+    public Fire(){}
+
+    @Override
+    public String toString() {
+        return "Fire{" +
+                "latitude=" + latitude +
+                ", longitude=" + longitude +
+                ", start=" + start +
+                ", end=" + end +
+                ", recordResponsible=" + recordResponsible +
+                ", identification=" + identification +
+                ", satelliteName='" + satelliteName + '\'' +
+                ", address=" + address +
+                ", parkName='" + parkName + '\'' +
+                ", savedAt=" + savedAt +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Fire fire)) return false;
+        return Objects.equals(getLatitude(), fire.getLatitude()) && Objects.equals(getLongitude(), fire.getLongitude()) && Objects.equals(getStart(), fire.getStart()) && Objects.equals(getEnd(), fire.getEnd()) && Objects.equals(getRecordResponsible(), fire.getRecordResponsible()) && Objects.equals(getIdentification(), fire.getIdentification()) && Objects.equals(getSatelliteName(), fire.getSatelliteName()) && Objects.equals(getAddress(), fire.getAddress()) && Objects.equals(getParkName(), fire.getParkName()) && Objects.equals(getSavedAt(), fire.getSavedAt());
     }
 
     public Float getLatitude() {
