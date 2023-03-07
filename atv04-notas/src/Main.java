@@ -15,7 +15,7 @@ public class Main {
             }
             float media = somaNotas/qtdNotas;
             System.out.println("A média das notas é: " + media);
-            if (media > 7) {
+            if (media >= 7) {
                 System.out.println("Aluno aprovado!");
             } else {
                 System.out.println("Aluno reprovado!");
