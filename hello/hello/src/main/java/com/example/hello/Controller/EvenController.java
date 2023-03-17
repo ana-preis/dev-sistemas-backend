@@ -4,19 +4,20 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
-import java.util.Objects;
+import java.util.List;
 
 @RestController
 public class EvenController {
     @GetMapping("/even")
-    public String getEven(@RequestParam(required = false, defaultValue = "")ArrayList<Integer> list,
-                          @RequestParam(required = false, defaultValue = "")String type) {
-        if (Objects.equals(type, "pares")) {
-            return list.stream().filter(i -> i%2 == 0).toString();
-        } else if (Objects.equals(type, "impares")) {
-            return list.stream().filter(i -> i%2 != 0).toString();
+    public String getEven(@RequestParam(defaultValue = "")List<Integer> list,
+                          @RequestParam(defaultValue = "pares")String type) {
+        if (type.equals("pares")) {
+            List<Integer> temp = list.stream().filter(i -> i%2 == 0).toList();
+            return temp.toString();
+        } else if (type.equals("impares")) {
+            List<Integer> temp = list.stream().filter(i -> i%2 != 0).toList();
+            return temp.toString();
         }
-        return "Invalid number";
+        return "Invalid type: choose pares or impares";
     }
 }
