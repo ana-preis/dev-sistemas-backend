@@ -5,12 +5,12 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
 @Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
