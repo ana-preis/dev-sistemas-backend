@@ -1,4 +1,4 @@
-package com.incendiosflorestais.controllers.dto;
+package com.incendiosflorestais.dto;
 
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;

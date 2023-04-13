@@ -1,4 +1,4 @@
-package com.incendiosflorestais.controllers.dto;
+package com.incendiosflorestais.dto;
 
 public record AdministratorDTO(
         boolean isAdmin

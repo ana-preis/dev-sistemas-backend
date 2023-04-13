@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -19,4 +21,6 @@ public class User {
     private String lastName;
     private String email;
     private String password;
+    @OneToMany(mappedBy = "recordResponsible")
+    private List<Fire> fireList;
 }

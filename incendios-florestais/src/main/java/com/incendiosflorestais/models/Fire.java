@@ -28,6 +28,6 @@ public class Fire {
     @ManyToOne
     private ParkAddress parkAddress;
     private LocalDateTime savedAt;
-    @OneToMany
+    @OneToMany(mappedBy = "fire")
     private List<Image> images = new ArrayList<Image>();
 }

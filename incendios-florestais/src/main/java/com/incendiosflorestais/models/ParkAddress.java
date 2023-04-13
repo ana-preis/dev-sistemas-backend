@@ -19,5 +19,7 @@ public class ParkAddress {
     private String state;
     private String country;
     private String parkName;
+    @OneToMany(mappedBy = "parkAddress")
+    private List<Fire> fireList;
 
 }

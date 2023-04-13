@@ -18,4 +18,6 @@ public class Image {
     private String fileName;
     private Identification type;
     private LocalDateTime date;
+    @ManyToOne
+    private Fire fire;
 }

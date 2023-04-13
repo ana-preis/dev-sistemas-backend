@@ -1,4 +1,4 @@
-package com.incendiosflorestais.controllers.dto;
+package com.incendiosflorestais.dto;
 
 import com.incendiosflorestais.models.Identification;
 import jakarta.validation.constraints.NotEmpty;
