@@ -8,5 +8,5 @@ import java.util.List;
 
 
 public interface JogoRepository extends JpaRepository<Jogo, Long> {
-    List<Jogo> findByEsporte(String esporte);
+    List<Jogo> findAllByEsporte(Esporte esporte);
 }

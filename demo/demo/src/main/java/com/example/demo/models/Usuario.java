@@ -15,8 +15,15 @@ public class Usuario {
   @GeneratedValue(strategy = GenerationType.AUTO)
   private Long id;
   private String nome;
+  @Column(unique = true)
   private String username;
   private String senha;
   private Boolean is_admin = true;
 
+  public Usuario(String nome, String username, String senha, Boolean is_admin) {
+    this.nome = nome;
+    this.username = username;
+    this.senha = senha;
+    this.is_admin = is_admin;
+  }
 }

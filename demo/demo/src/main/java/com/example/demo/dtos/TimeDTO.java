@@ -3,11 +3,10 @@ package com.example.demo.dtos;
 import com.example.demo.models.Time;
 
 import java.util.List;
-
-import static com.example.demo.dtos.EstudanteDTO.toEstudanteDTOList;
+import java.util.stream.Collectors;
 
 public record TimeDTO(
-        List<Long> estudanteIds,
+        Long id,
         String nome,
         String esporte,
         Long idCapitao,
@@ -16,11 +15,17 @@ public record TimeDTO(
 ) {
     public TimeDTO(Time time) {
         this (
-                toEstudanteDTOList(time.getEstudantes()),
+                time.getId(),
                 time.getNome(),
                 time.getEsporte().toString(),
                 time.getCapitao().getId(),
                 time.getTurma().getId()
         );
+    }
+
+    public static List<TimeDTO> toTimeDTOList(List<Time> times) {
+        return times.stream()
+                .map(time -> new TimeDTO(time))
+                .collect(Collectors.toList());
     }
 }

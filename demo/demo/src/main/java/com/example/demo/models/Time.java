@@ -26,8 +26,7 @@ public class Time {
     @ManyToOne
     private Turma turma;
 
-    public Time(TimeDTO dto, Estudante capitao, List<Estudante> estudantes, Turma turma) {
-        this.estudantes = estudantes;
+    public Time(TimeDTO dto, Estudante capitao, Turma turma) {
         this.nome = dto.nome();
         this.esporte = Esporte.valueOf(dto.esporte());
         this.capitao = capitao;
