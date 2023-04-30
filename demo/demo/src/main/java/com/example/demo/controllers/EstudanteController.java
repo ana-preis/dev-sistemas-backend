@@ -1,8 +1,6 @@
 package com.example.demo.controllers;
 
 import com.example.demo.dtos.EstudanteDTO;
-import com.example.demo.repositories.EstudanteRepository;
-import com.example.demo.repositories.TurmaRepository;
 import com.example.demo.service.EstudanteService;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;

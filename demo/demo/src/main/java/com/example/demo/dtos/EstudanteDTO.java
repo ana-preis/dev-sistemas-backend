@@ -3,7 +3,6 @@ package com.example.demo.dtos;
 import com.example.demo.models.Estudante;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 import java.util.List;
@@ -34,18 +33,6 @@ public record EstudanteDTO(
                 estudante.getSenha(),
                 estudante.getIs_admin(),
                 estudante.getTurma() != null ? estudante.getTurma().getId() : null,
-                estudante.getMatricula()
-        );
-    }
-
-    public EstudanteDTO(Estudante estudante, Long idTurma){
-        this (
-                estudante.getId(),
-                estudante.getNome(),
-                estudante.getUsername(),
-                estudante.getSenha(),
-                estudante.getIs_admin(),
-                idTurma,
                 estudante.getMatricula()
         );
     }

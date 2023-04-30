@@ -28,7 +28,7 @@ public class Time {
 
     public Time(TimeDTO dto, Estudante capitao, Turma turma) {
         this.nome = dto.nome();
-        this.esporte = Esporte.valueOf(dto.esporte());
+        this.esporte = Esporte.valueOf(dto.esporte().toLowerCase());
         this.capitao = capitao;
         this.turma = turma;
     }

@@ -33,14 +33,7 @@ public class EstudanteService {
         if (estudante.isEmpty()) {
             return null;
         }
-        Long turmaId;
-        if(estudante.get().getTurma() == null) {
-            turmaId = null;
-        } else {
-            turmaId = estudante.get().getTurma().getId();
-        }
-        EstudanteDTO dto = new EstudanteDTO(estudante.get(), turmaId);
-        return dto;
+        return new EstudanteDTO(estudante.get());
     }
 
     public List<EstudanteDTO> getAll() {
@@ -57,13 +50,11 @@ public class EstudanteService {
         if(estudante.isEmpty()){
             return null;
         }
-        Optional<Turma> turma = turmaRepository.findById(dto.idTurma());
-        if(turma.isEmpty()) {
-            return null;
-        }
         Estudante novoEstudante = estudante.get();
+        novoEstudante.setNome(dto.nome());
+        novoEstudante.setSenha(dto.senha());
+        novoEstudante.setIs_admin(dto.is_admin());
         novoEstudante.setMatricula(dto.matricula());
-        novoEstudante.setTurma(turma.get());
         Estudante salvo = repository.save(novoEstudante);
         return new EstudanteDTO(salvo);
     }

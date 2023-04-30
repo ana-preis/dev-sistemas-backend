@@ -18,7 +18,7 @@ public class JogoController {
     @Autowired
     private JogoService service;
 
-    @PutMapping()
+    @PostMapping()
     @Transactional
     public ResponseEntity<JogoDTO> save(@RequestBody @Valid JogoDTO dto) {
         JogoDTO saved = service.save(dto);
@@ -38,7 +38,7 @@ public class JogoController {
     }
 
     @GetMapping
-    public ResponseEntity<List<JogoDTO>> search(@RequestParam String esporte) {
+    public ResponseEntity<List<JogoDTO>> search(@RequestParam(required = false) String esporte) {
         List<JogoDTO> dtos = service.search(esporte);
         return new ResponseEntity<>(dtos, HttpStatus.OK);
     }
@@ -48,6 +48,17 @@ public class JogoController {
     public ResponseEntity<JogoDTO> update(@PathVariable Long id,
                                           @RequestBody @Valid JogoDTO dto) {
         JogoDTO updated = service.update(id, dto);
+        if(updated == null) {
+            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity<>(updated, HttpStatus.OK);
+    }
+
+    @PutMapping("/{id}/placares")
+    @Transactional
+    public ResponseEntity<JogoDTO> updatePlacar(@RequestBody JogoDTO dto,
+                                                @PathVariable Long id) {
+        JogoDTO updated = service.updatePlacar(id, dto);
         if(updated == null) {
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }

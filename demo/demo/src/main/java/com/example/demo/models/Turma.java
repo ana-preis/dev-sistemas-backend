@@ -27,7 +27,7 @@ public class Turma {
     public Turma(TurmaDTO dto) {
         this.nome = dto.nome();
         this.serie = dto.serie();
-        this.turno = Turno.valueOf(dto.turno());
+        this.turno = Turno.valueOf(dto.turno().toLowerCase());
     }
 
 }

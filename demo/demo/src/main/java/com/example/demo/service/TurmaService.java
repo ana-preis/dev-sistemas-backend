@@ -20,7 +20,6 @@ public class TurmaService {
     private TurmaRepository repository;
 
     public TurmaDTO save(TurmaDTO dto) {
-        //VALIDA TURNO
         Turma turma = new Turma(dto);
         return new TurmaDTO(repository.save(turma));
     }
@@ -48,7 +47,7 @@ public class TurmaService {
         }
         Turma novaTurma = turma.get();
         novaTurma.setNome(dto.nome());
-        novaTurma.setTurno(Turno.valueOf(dto.turno()));
+        novaTurma.setTurno(Turno.valueOf(dto.turno().toLowerCase()));
         novaTurma.setSerie(dto.serie());
         return new TurmaDTO(repository.save(novaTurma));
     }

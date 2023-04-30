@@ -1,5 +1,6 @@
 package com.incendiosflorestais.models;
 
+import com.incendiosflorestais.dto.ParkAddressDTO;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -22,4 +23,10 @@ public class ParkAddress {
     @OneToMany(mappedBy = "parkAddress")
     private List<Fire> fireList;
 
+    public ParkAddress(ParkAddressDTO dto) {
+        this.city = dto.city();
+        this.state = dto.state();
+        this.country = dto.country();
+        this.parkName = dto.parkName();
+    }
 }

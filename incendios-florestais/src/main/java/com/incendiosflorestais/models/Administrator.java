@@ -1,9 +1,8 @@
 package com.incendiosflorestais.models;
 
+import com.incendiosflorestais.dto.AdministratorDTO;
+import com.incendiosflorestais.dto.UserDTO;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -15,8 +14,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Entity
 public class Administrator extends User {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+
     private boolean isAdmin;
+
+    public Administrator(AdministratorDTO adminDto, UserDTO dto){
+        super(dto.firstName(), dto.lastName(), dto.email(), dto.password());
+        this.isAdmin = adminDto.isAdmin();
+    }
 }

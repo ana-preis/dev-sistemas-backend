@@ -35,6 +35,6 @@ public class Jogo {
     this.time1 = time1;
     this.time2 = time2;
     this.data = dto.data();
-    this.esporte = Esporte.valueOf(dto.esporte());
+    this.esporte = Esporte.valueOf(dto.esporte().toLowerCase());
   }
 }

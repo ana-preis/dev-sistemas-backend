@@ -1,6 +1,7 @@
 package com.example.demo.controllers;
 
 import com.example.demo.dtos.TimeDTO;
+import com.example.demo.repositories.EstudanteRepository;
 import com.example.demo.service.TimeService;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
@@ -24,9 +25,20 @@ public class TimeController {
     public ResponseEntity<TimeDTO> save(@RequestBody @Valid TimeDTO dto) {
         TimeDTO newDto = service.save(dto);
         if(newDto == null) {
-            new ResponseEntity<>(service.save(dto), HttpStatus.BAD_REQUEST);
+            new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }
-        return new ResponseEntity<>(service.save(dto), HttpStatus.CREATED);
+        return new ResponseEntity<>(newDto, HttpStatus.CREATED);
+    }
+
+    @PostMapping("/{id}")
+    @Transactional
+    public ResponseEntity<TimeDTO> saveStudentsInTime(@PathVariable Long id,
+                                                @RequestParam(required = false) List<Long> ids) {
+        TimeDTO time = service.saveStudent(id, ids);
+        if(time == null) {
+            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity<>(time, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")

@@ -1,5 +1,6 @@
 package com.incendiosflorestais.models;
 
+import com.incendiosflorestais.dto.UserDTO;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -23,4 +24,18 @@ public class User {
     private String password;
     @OneToMany(mappedBy = "recordResponsible")
     private List<Fire> fireList;
+
+    public User(UserDTO dto) {
+        this.firstName = dto.firstName();
+        this.lastName = dto.lastName();
+        this.email = dto.email();
+        this.password = dto.password();
+    }
+
+    public User(String firstName, String lastName, String email, String password) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.password = password;
+    }
 }
