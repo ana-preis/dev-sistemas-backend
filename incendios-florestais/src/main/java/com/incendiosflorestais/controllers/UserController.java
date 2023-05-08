@@ -21,6 +21,7 @@ public class UserController {
     @PostMapping()
     @Transactional
     public ResponseEntity<UserDTO> save(@RequestBody @Valid UserDTO dto) {
+        System.out.println(dto);
         UserDTO saved = service.save(dto);
         if(saved == null) {
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);

@@ -30,7 +30,7 @@ public class Fire {
     private ParkAddress parkAddress;
     private LocalDateTime savedAt;
     @OneToMany(mappedBy = "fire")
-    private List<Image> images = new ArrayList<Image>();
+    private List<Image> images;
 
     public Fire(FireDTO dto, User recordResponsible, ParkAddress park) {
         this.latitude = dto.latitude();
