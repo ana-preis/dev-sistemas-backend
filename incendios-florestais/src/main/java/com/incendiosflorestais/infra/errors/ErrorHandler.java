@@ -1,6 +1,7 @@
 package com.incendiosflorestais.infra.errors;
 
 import jakarta.persistence.EntityNotFoundException;
+import org.springframework.dao.InvalidDataAccessApiUsageException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -32,4 +33,12 @@ public class ErrorHandler {
     public ResponseEntity handleError400(ValidationException ex) {
         return ResponseEntity.badRequest().body(ex.getMessage());
     }
+
+    @ExceptionHandler(
+            InvalidDataAccessApiUsageException.class
+    )
+    public ResponseEntity handleError400(InvalidDataAccessApiUsageException ex) {
+        return ResponseEntity.badRequest().body(ex.getMessage());
+    }
+
 }

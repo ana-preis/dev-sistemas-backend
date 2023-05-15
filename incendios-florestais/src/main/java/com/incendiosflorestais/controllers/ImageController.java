@@ -23,18 +23,12 @@ public class ImageController {
     @Transactional
     public ResponseEntity<ImageDTO> save(@RequestBody @Valid ImageDTO dto) {
         ImageDTO saved = service.save(dto);
-        if(saved == null) {
-            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
-        }
         return new ResponseEntity<>(saved, HttpStatus.CREATED);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<ImageDTO> getByID(@PathVariable Long id) {
         ImageDTO dto = service.getByID(id);
-        if(dto == null) {
-            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
-        }
         return new ResponseEntity<>(dto, HttpStatus.OK);
     }
 
@@ -51,9 +45,6 @@ public class ImageController {
     public ResponseEntity<ImageDTO> update(@PathVariable Long id,
                                                  @RequestBody @Valid ImageDTO dto) {
         ImageDTO updated = service.update(id, dto);
-        if(updated == null) {
-            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
-        }
         return new ResponseEntity<>(updated, HttpStatus.OK);
     }
 

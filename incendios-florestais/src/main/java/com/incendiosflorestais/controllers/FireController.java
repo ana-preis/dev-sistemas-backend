@@ -24,18 +24,12 @@ public class FireController {
     @Transactional
     public ResponseEntity<FireDTO> save(@RequestBody FireDTO dto) {
         FireDTO saved = service.save(dto);
-        if(saved == null) {
-            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
-        }
         return new ResponseEntity<>(saved, HttpStatus.CREATED);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<FireDTO> getByID(@PathVariable Long id) {
         FireDTO dto = service.getByID(id);
-        if(dto == null) {
-            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
-        }
         return new ResponseEntity<>(dto, HttpStatus.OK);
     }
 
@@ -57,9 +51,6 @@ public class FireController {
     public ResponseEntity<FireDTO> update(@PathVariable Long id,
                                           @RequestBody @Valid FireDTO dto) {
         FireDTO updated = service.update(id, dto);
-        if(updated == null) {
-            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
-        }
         return new ResponseEntity<>(updated, HttpStatus.OK);
     }
 

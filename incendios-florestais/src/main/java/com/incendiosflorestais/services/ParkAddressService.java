@@ -28,7 +28,6 @@ public class ParkAddressService {
 
     public ParkAddressDTO getByID(Long id) {
         Optional<ParkAddress> park = repository.findById(id);
-        if(park.isEmpty()) return null;
         return new ParkAddressDTO(park.get());
     }
 
@@ -44,7 +43,6 @@ public class ParkAddressService {
 
     public ParkAddressDTO update(Long id, ParkAddressDTO dto) {
         Optional<ParkAddress> parkOpt = repository.findById(id);
-        if(parkOpt.isEmpty()) return null;
         ParkAddress park = parkOpt.get();
         park.setCity(dto.city());
         park.setState(dto.state());

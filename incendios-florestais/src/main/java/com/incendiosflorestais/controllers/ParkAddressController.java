@@ -22,18 +22,12 @@ public class ParkAddressController {
     @Transactional
     public ResponseEntity<ParkAddressDTO> save(@RequestBody @Valid ParkAddressDTO dto) {
         ParkAddressDTO saved = service.save(dto);
-        if(saved == null) {
-            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
-        }
         return new ResponseEntity<>(saved, HttpStatus.CREATED);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<ParkAddressDTO> getByID(@PathVariable Long id) {
         ParkAddressDTO dto = service.getByID(id);
-        if(dto == null) {
-            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
-        }
         return new ResponseEntity<>(dto, HttpStatus.OK);
     }
 
@@ -50,9 +44,6 @@ public class ParkAddressController {
     public ResponseEntity<ParkAddressDTO> update(@PathVariable Long id,
                                                  @RequestBody @Valid ParkAddressDTO dto) {
         ParkAddressDTO updated = service.update(id, dto);
-        if(updated == null) {
-            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
-        }
         return new ResponseEntity<>(updated, HttpStatus.OK);
     }
 

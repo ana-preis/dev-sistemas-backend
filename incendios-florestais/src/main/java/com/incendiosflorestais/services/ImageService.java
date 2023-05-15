@@ -27,14 +27,12 @@ public class ImageService {
 
     public ImageDTO save(ImageDTO dto) {
         Optional<Fire> fire = fireRepository.findById(dto.fireID());
-        if(fire.isEmpty()) return null;
         Image img = new Image(dto, fire.get());
         return new ImageDTO(repository.save(img));
     }
 
     public ImageDTO getByID(Long id) {
         Optional<Image> img = repository.findById(id);
-        if(img.isEmpty()) return null;
         return new ImageDTO(img.get());
     }
 
@@ -54,7 +52,6 @@ public class ImageService {
         if(dto.type() == null) {
             identificationValue = null;
         } else identificationValue = Identification.valueOf(dto.type().toUpperCase());
-        if(imgOpt.isEmpty()) return null;
         Image img = imgOpt.get();
         img.setFileName(dto.fileName());
         img.setType(identificationValue);

@@ -31,16 +31,13 @@ public class FireService {
 
     public FireDTO save(FireDTO dto) {
         Optional<ParkAddress> parkOpt = parkRepository.findById(dto.parkID());
-        if(parkOpt.isEmpty()) return null;
         Optional<User> responsible = userRepository.findById(dto.recordResponsibleID());
-        if(responsible.isEmpty()) return null;
         Fire fire = new Fire(dto, responsible.get(), parkOpt.get());
         return new FireDTO(repository.save(fire));
     }
 
     public FireDTO getByID(Long id) {
         Optional<Fire> fire = repository.findById(id);
-        if(fire.isEmpty()) return null;
         return new FireDTO(fire.get());
     }
 
@@ -71,7 +68,6 @@ public class FireService {
     public FireDTO update(Long id, FireDTO dto) {
         Optional<Fire> fireOpt = repository.findById(id);
         Identification identificationValue;
-        if(fireOpt.isEmpty()) return null;
         if(dto.identification() == null) {
             identificationValue = null;
         } else identificationValue = Identification.valueOf(dto.identification().toUpperCase());

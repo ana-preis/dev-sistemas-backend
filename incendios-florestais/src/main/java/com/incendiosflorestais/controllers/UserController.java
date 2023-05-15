@@ -21,11 +21,7 @@ public class UserController {
     @PostMapping()
     @Transactional
     public ResponseEntity<UserDTO> save(@RequestBody @Valid UserDTO dto) {
-        System.out.println(dto);
         UserDTO saved = service.save(dto);
-        if(saved == null) {
-            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
-        }
         return new ResponseEntity<>(saved, HttpStatus.OK);
     }
 
@@ -39,9 +35,6 @@ public class UserController {
     @GetMapping("/{id}")
     public ResponseEntity<UserDTO> getByID(@PathVariable Long id) {
         UserDTO dto = service.getByID(id);
-        if(dto == null) {
-            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
-        }
         return new ResponseEntity<>(dto, HttpStatus.OK);
     }
 
@@ -50,9 +43,6 @@ public class UserController {
     public ResponseEntity<UserDTO> update(@PathVariable Long id,
                                           @RequestBody @Valid UserDTO dto) {
         UserDTO updated = service.update(id, dto);
-        if(updated == null) {
-            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
-        }
         return new ResponseEntity<>(updated, HttpStatus.OK);
     }
 

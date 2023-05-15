@@ -27,7 +27,6 @@ public class UserService {
 
     public UserDTO getByID(Long id) {
         Optional<User> user = repository.findById(id);
-        if(user.isEmpty()) return null;
         return new UserDTO(user.get());
     }
 
@@ -43,7 +42,6 @@ public class UserService {
 
     public UserDTO update(Long id, UserDTO dto) {
         Optional<User> userOpt = repository.findById(id);
-        if(userOpt.isEmpty()) return null;
         User user = userOpt.get();
         user.setFirstName(dto.firstName());
         user.setLastName(dto.lastName());
