@@ -17,8 +17,9 @@ public class Administrator extends User {
 
     private boolean isAdmin;
 
-    public Administrator(AdministratorDTO adminDto, UserDTO dto){
-        super(dto.firstName(), dto.lastName(), dto.email(), dto.password());
+    public Administrator(AdministratorDTO adminDto, UserDTO dto, String token){
+        super(dto.firstName(), dto.lastName(), dto.email());
         this.isAdmin = adminDto.isAdmin();
+        super.setPassword(token);
     }
 }

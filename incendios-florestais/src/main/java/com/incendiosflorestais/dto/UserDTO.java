@@ -10,26 +10,16 @@ import java.util.stream.Collectors;
 public record UserDTO(
 
         Long id,
-        @NotEmpty
-        @Size(min = 1, message = "first name should have at least one character")
         String firstName,
-        @NotEmpty
-        @Size(min = 1, message = "last name should have at least one character")
         String lastName,
-        @NotEmpty
-        @Size(min = 5, message = "email should have at least 5 characters")
-        String email,
-        @NotEmpty
-        @Size(min = 6, message = "password should have at least 6 characters")
-        String password
+        String email
 ) {
         public UserDTO(User user) {
                 this (
                         user.getId(),
                         user.getFirstName(),
                         user.getLastName(),
-                        user.getEmail(),
-                        user.getPassword()
+                        user.getEmail()
                 );
         }
 

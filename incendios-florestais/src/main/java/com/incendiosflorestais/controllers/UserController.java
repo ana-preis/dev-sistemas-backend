@@ -1,6 +1,7 @@
 package com.incendiosflorestais.controllers;
 
 import com.incendiosflorestais.dto.UserDTO;
+import com.incendiosflorestais.dto.UserForm;
 import com.incendiosflorestais.services.UserService;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
@@ -20,7 +21,7 @@ public class UserController {
 
     @PostMapping()
     @Transactional
-    public ResponseEntity<UserDTO> save(@RequestBody @Valid UserDTO dto) {
+    public ResponseEntity<UserDTO> save(@RequestBody @Valid UserForm dto) {
         UserDTO saved = service.save(dto);
         return new ResponseEntity<>(saved, HttpStatus.OK);
     }
@@ -41,7 +42,7 @@ public class UserController {
     @PutMapping("/{id}")
     @Transactional
     public ResponseEntity<UserDTO> update(@PathVariable Long id,
-                                          @RequestBody @Valid UserDTO dto) {
+                                          @RequestBody @Valid UserForm dto) {
         UserDTO updated = service.update(id, dto);
         return new ResponseEntity<>(updated, HttpStatus.OK);
     }
