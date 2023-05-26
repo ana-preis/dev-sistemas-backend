@@ -1,7 +1,6 @@
 package com.incendiosflorestais.dto;
 
-public record TokenOutputDTO(
-        String accessToken,
+public record RefreshTokenInputDTO(
         String refreshToken
 ) {
 }

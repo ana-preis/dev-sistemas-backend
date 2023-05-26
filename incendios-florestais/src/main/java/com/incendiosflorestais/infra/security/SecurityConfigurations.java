@@ -58,6 +58,8 @@ public class SecurityConfigurations {
             .permitAll()
             .requestMatchers(HttpMethod.GET , "/parks")
             .permitAll()
+            .requestMatchers(HttpMethod.POST , "/refresh")
+            .permitAll()
             .anyRequest()
             .authenticated()
             .and()

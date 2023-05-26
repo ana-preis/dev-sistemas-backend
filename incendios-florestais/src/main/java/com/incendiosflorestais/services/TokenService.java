@@ -22,7 +22,7 @@ public class TokenService {
     private String issuer;
 
     @Value("${api.security.token.expiration_min}")
-    private Integer expirationMin;
+    private String expirationMin;
 
     public String gerarToken(User usuario) {
         try {
@@ -41,7 +41,7 @@ public class TokenService {
     private Instant dataExpiracao() {
         return LocalDateTime
                 .now()
-                .plusMinutes(expirationMin)
+                .plusMinutes(Integer.parseInt(expirationMin))
                 .toInstant(ZoneOffset.of("-03:00"));
     }
 
