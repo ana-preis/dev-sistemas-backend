@@ -12,6 +12,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import java.util.List;
@@ -25,6 +26,11 @@ public class SecurityConfigurations {
 
     @Autowired
     private AuthEntryPoint authEntryPoint;
+
+    @Bean
+    public AccessDeniedHandler getAccessDeniedHandler() {
+        return new ForbiddenHandler();
+    }
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -60,11 +66,16 @@ public class SecurityConfigurations {
             .permitAll()
             .requestMatchers(HttpMethod.POST , "/refresh")
             .permitAll()
+            .requestMatchers(HttpMethod.DELETE , "/revoke")
+            .permitAll()
+            .requestMatchers( "/swagger-ui.html", "/swagger.ui/*" )
+            .permitAll()
             .anyRequest()
             .authenticated()
             .and()
             .addFilterBefore(securityFilters, UsernamePasswordAuthenticationFilter.class)
             .exceptionHandling()
+            .accessDeniedHandler(getAccessDeniedHandler())
             .authenticationEntryPoint(authEntryPoint)
             .and()
             .build();

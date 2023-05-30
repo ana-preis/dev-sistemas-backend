@@ -1,10 +1,14 @@
 package com.incendiosflorestais.services;
 
 import com.incendiosflorestais.models.RefreshToken;
+import com.incendiosflorestais.models.User;
 import com.incendiosflorestais.repositories.RefreshTokenRepository;
 import com.incendiosflorestais.repositories.UserRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -21,10 +25,12 @@ public class RefreshTokenService {
     @Value("${api.security.refresh.token.expiration_min}")
     private String expirationMin;
 
+    @Transactional
     public RefreshToken generateRefreshToken(long userID, String accessToken) {
-        var user = userRepository.findById(userID);
+        var user = userRepository.findById(userID).orElseThrow();
         var refreshToken = new RefreshToken();
-        refreshToken.setUser(user.get());
+        repository.deleteByUser(user);
+        refreshToken.setUser(user);
         refreshToken.setAccessToken(accessToken);
         refreshToken.setExpirationDate(getDataExpiracao());
         //utilizar algoritmo para gerar dado unico para salvar token. aqui escolhemos uuid
@@ -37,6 +43,7 @@ public class RefreshTokenService {
         return LocalDateTime.now().plusMinutes(Integer.parseInt(expirationMin));
     }
 
+    @Transactional
     public RefreshToken refreshTokenValid(String refreshToken) {
         var token = repository.findByRefreshToken(refreshToken).orElseThrow();
         if(!token.getExpirationDate().isAfter(LocalDateTime.now())) {
@@ -46,4 +53,9 @@ public class RefreshTokenService {
         return token;
     }
 
+    @Transactional
+    public void deleteByUser() {
+        var user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        repository.deleteByUser(user);
+    }
 }

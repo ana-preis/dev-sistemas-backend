@@ -3,18 +3,20 @@ package com.incendiosflorestais.controllers;
 import com.incendiosflorestais.dto.RefreshTokenInputDTO;
 import com.incendiosflorestais.dto.TokenInputDTO;
 import com.incendiosflorestais.dto.TokenOutputDTO;
+import com.incendiosflorestais.dto.UserDTO;
 import com.incendiosflorestais.models.User;
 import com.incendiosflorestais.services.RefreshTokenService;
 import com.incendiosflorestais.services.TokenService;
+import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class AuthController {
@@ -50,6 +52,20 @@ public class AuthController {
         var user = token.getUser();
         var responseDto = getToken(user);
         return new ResponseEntity<>(responseDto, HttpStatus.CREATED);
+    }
+
+    @Transactional
+    @DeleteMapping("/revoke")
+    public ResponseEntity<?> revokeToken(){
+        refreshTokenService.deleteByUser();
+        return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
+    }
+
+    @GetMapping("/me")
+    public ResponseEntity<UserDTO> me(){
+        var user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        UserDTO dto = new UserDTO(user);
+        return new ResponseEntity<>(dto, HttpStatus.OK);
     }
 
     private TokenOutputDTO getToken(User user) {
