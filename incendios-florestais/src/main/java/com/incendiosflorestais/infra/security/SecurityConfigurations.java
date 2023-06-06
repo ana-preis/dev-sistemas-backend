@@ -70,6 +70,8 @@ public class SecurityConfigurations {
             .permitAll()
             .requestMatchers( "/swagger-ui.html", "/swagger.ui/*" )
             .permitAll()
+            .requestMatchers( HttpMethod.GET, "/recover-password*" )
+            .permitAll()
             .anyRequest()
             .authenticated()
             .and()

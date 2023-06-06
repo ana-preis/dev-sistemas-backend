@@ -18,7 +18,7 @@ public record UserForm(
         @Size(min = 5, message = "email should have at least 5 characters")
         String email,
         @NotEmpty
-        @Size(min = 6, message = "password should have at least 6 characters")
+        @Size(min = 6, max = 24, message = "password should have between 6 and 24 characters")
         String password
 ) {
     public UserForm(User user) {

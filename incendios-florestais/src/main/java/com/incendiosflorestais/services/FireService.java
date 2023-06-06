@@ -29,10 +29,15 @@ public class FireService {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private EmailService emailService;
+
     public FireDTO save(FireDTO dto) {
         Optional<ParkAddress> parkOpt = parkRepository.findById(dto.parkID());
         Optional<User> responsible = userRepository.findById(dto.recordResponsibleID());
         Fire fire = new Fire(dto, responsible.get(), parkOpt.get());
+        String corpoEmail = "Um novo incêndio no parque " + parkOpt.get().getParkName() + " foi salvo pelo usuário " + responsible.get().getUsername();
+        this.emailService.enviarEmail(responsible.get().getEmail(), "Novo incêndio salvo", corpoEmail);
         return new FireDTO(repository.save(fire));
     }
 

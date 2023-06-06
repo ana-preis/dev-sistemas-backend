@@ -1,6 +1,7 @@
 package com.incendiosflorestais.controllers;
 
 import com.incendiosflorestais.dto.FireDTO;
+import com.incendiosflorestais.services.EmailService;
 import com.incendiosflorestais.services.FireService;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
