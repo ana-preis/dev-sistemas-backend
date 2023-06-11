@@ -5,15 +5,18 @@ import com.incendiosflorestais.services.EmailService;
 import com.incendiosflorestais.services.FireService;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.slf4j.Logger;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
+@Slf4j
 @RestController
 @RequestMapping("/fires")
 public class FireController {
@@ -25,6 +28,7 @@ public class FireController {
     @Transactional
     public ResponseEntity<FireDTO> save(@RequestBody FireDTO dto) {
         FireDTO saved = service.save(dto);
+        log.info("New saved fire: " + saved.toString());
         return new ResponseEntity<>(saved, HttpStatus.CREATED);
     }
 
