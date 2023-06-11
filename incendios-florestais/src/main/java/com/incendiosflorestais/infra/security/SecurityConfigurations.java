@@ -76,10 +76,10 @@ public class SecurityConfigurations {
             .authenticated()
             .and()
             .addFilterBefore(securityFilters, UsernamePasswordAuthenticationFilter.class)
-            .exceptionHandling()
-            .accessDeniedHandler(getAccessDeniedHandler())
-            .authenticationEntryPoint(authEntryPoint)
-            .and()
+            .exceptionHandling(handling -> {
+                handling.authenticationEntryPoint(authEntryPoint);
+                handling.accessDeniedHandler(this.getAccessDeniedHandler());
+            })
             .build();
     }
 }

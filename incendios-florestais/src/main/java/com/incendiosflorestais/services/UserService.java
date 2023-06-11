@@ -2,9 +2,11 @@ package com.incendiosflorestais.services;
 
 import com.incendiosflorestais.dto.UserDTO;
 import com.incendiosflorestais.dto.UserForm;
+import com.incendiosflorestais.infra.errors.ValidationException;
 import com.incendiosflorestais.models.User;
 import com.incendiosflorestais.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -27,6 +29,8 @@ public class UserService {
     private PasswordEncoder encoder;
 
     public UserDTO save(UserForm dto) {
+        Optional<UserDetails> userFind = repository.findByEmail(dto.email());
+        if(userFind.isPresent()) throw new ValidationException("Email ja foi cadastrado");
         User user = new User(dto);
         String password = encoder.encode(dto.password());
         user.setPassword(password);
